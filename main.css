@@ -9,15 +9,20 @@ body {
   height: 100vh;
 }
 .container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
   background-color: #333;
   margin-top: 1rem;
-  padding: 1px 1rem 1rem;
+  padding: 1px 1.4rem 1.4rem;
 }
 .task {
   background-color: #eee;
-  padding: 1rem;
-  margin-top: 1rem;
+  padding: 1.6rem;
+  margin-top: 1.4rem;
   cursor: move;
+  font-size: 1.2rem;
+  text-align: center;
 }
 .dragging {
   opacity: 0.6;
