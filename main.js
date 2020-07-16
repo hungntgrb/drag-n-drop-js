@@ -1,7 +1,7 @@
 const tasks = document.querySelectorAll(".task");
 const containers = document.querySelectorAll(".container");
 
-underneathElem = null;
+afterElem = null;
 
 tasks.forEach((task) => {
   const box = task.getBoundingClientRect();
@@ -10,28 +10,31 @@ tasks.forEach((task) => {
   });
   task.addEventListener("dragend", () => {
     task.classList.remove("dragging");
-    insertItBefore(task, underneathElem);
-    underneathElem = null;
+    insertItBefore(task, afterElem);
+    afterElem = null;
   });
   task.addEventListener("dragover", (e) => {
     e.preventDefault();
+    console.log(
+      "target: ",
+      e.target.textContent,
+      "\ncurrentTarget: ",
+      e.currentTarget.textContent
+    );
     if (isBefore(box, e)) {
-      underneathElem = task;
+      afterElem = task;
+    } else {
+      afterElem = task.nextSibling;
     }
   });
 });
-
-const t1 = tasks[0];
-const c1 = containers[0];
-const c2 = containers[1];
-const t3 = tasks[2];
-const t4 = tasks[3];
 
 function isBefore(box, event) {
   return event.offsetY <= box.height / 2;
 }
 
-function insertItBefore(newE, existing) {
-  const parent = existing.parentElement;
-  parent.insertBefore(newE, existing);
+function insertItBefore(A, B) {
+  // Insert A before B
+  const parent = B.parentElement;
+  parent.insertBefore(A, B);
 }
